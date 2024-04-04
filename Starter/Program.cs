@@ -160,34 +160,7 @@ do
                 }
             } while (validEntry == false);
 
-            while (anotherPet == "y" && petCount < maxPets)
-        
-            {
-                // increment petCount (the array is zero-based, so we increment the counter after adding to the array)
-                petCount = petCount + 1;
-                
-                // check maxPet limit
-                if (petCount < maxPets)
-                {
-                    // another pet?
-                    Console.WriteLine("Do you want to enter info for another pet (y/n)");
-                    do
-                    {
-                        readResult = Console.ReadLine();
-                        if (readResult != null)
-                        {
-                            anotherPet = readResult.ToLower();
-                        }
-                    } while (anotherPet != "y" && anotherPet != "n");
-                }
-            }
-            
-            if (petCount >= maxPets)
-            {
-                Console.WriteLine("We have reached our limit on the number of pets we can manage.");
-                Console.WriteLine("Press the Enter key to continue.");
-                readResult = Console.ReadLine();
-            }
+            // cut from here
 
             // build the animal the ID number - for example C1, C2, D3 (for Cat 1, Cat 2, Dog 3)
             animalID = animalSpecies.Substring(0, 1) + (petCount + 1).ToString();
@@ -255,6 +228,44 @@ do
                     }
                 }
             } while (animalNickname == "");
+
+            // store the pet information in the ourAnimals array (zero based)
+            ourAnimals[petCount, 0] = "ID #: " + animalID;
+            ourAnimals[petCount, 1] = "Species: " + animalSpecies;
+            ourAnimals[petCount, 2] = "Age: " + animalAge;
+            ourAnimals[petCount, 3] = "Nickname: " + animalNickname;
+            ourAnimals[petCount, 4] = "Physical description: " + animalPhysicalDescription;
+            ourAnimals[petCount, 5] = "Personality: " + animalPersonalityDescription;
+
+            // past to here
+            while (anotherPet == "y" && petCount < maxPets)
+        
+            {
+                // increment petCount (the array is zero-based, so we increment the counter after adding to the array)
+                petCount = petCount + 1;
+                
+                // check maxPet limit
+                if (petCount < maxPets)
+                {
+                    // another pet?
+                    Console.WriteLine("Do you want to enter info for another pet (y/n)");
+                    do
+                    {
+                        readResult = Console.ReadLine();
+                        if (readResult != null)
+                        {
+                            anotherPet = readResult.ToLower();
+                        }
+                    } while (anotherPet != "y" && anotherPet != "n");
+                }
+            }
+            
+            if (petCount >= maxPets)
+            {
+                Console.WriteLine("We have reached our limit on the number of pets we can manage.");
+                Console.WriteLine("Press the Enter key to continue.");
+                readResult = Console.ReadLine();
+            }
             
             break;
 
